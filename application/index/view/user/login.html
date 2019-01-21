@@ -1,72 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <!-- Title -->
+        <title>Layers | Login - Sign in</title>
+        
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta charset="UTF-8">
+        <meta name="description" content="Admin Dashboard Template" />
+        <meta name="keywords" content="admin,dashboard" />
+        <meta name="author" content="Lalassu" />
+        
+        <!-- Styles -->
+        <link href="/static/assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
+        <link href="/static/assets/plugins/uniform/css/default.css" rel="stylesheet"/>
+        <link href="/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
+        <link href="/static/assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
+        <link href="/static/assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="/static/assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>	
+        
+        <!-- Theme Styles -->
+        <link href="/static/assets/css/layers.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/assets/css/layers/dark-layer.css" class="theme-color" rel="stylesheet" type="text/css"/>
+        <link href="/static/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="/static/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
+        <script src="/static/assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+    </head>
+    <body class="page-login">
+        <main class="page-content">
+            <div class="page-inner">
+                <div id="main-wrapper">
+                    <div class="row">
+                        <div class="col-md-3 center">
+                            <div class="panel panel-white" id="js-alerts">
+                                <div class="panel-body">
+                                    <div class="login-box">
+                                        <a href="index.html" class="logo-name text-lg text-center m-t-xs">LAYERS</a>
+                                        <p class="text-center m-t-md">Please login into your account.</p>
+                                        <form class="m-t-md" action="index.html">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Name" name="name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" class="form-control password" placeholder="Password" required>
+                                            </div>
+                                            <div class="form-group" style="position: relative;">
+                                                <input type="text" name="verify" class="form-control password" placeholder="Verify" style="width: 130px" required>
+                                                <img src="{:url('index/Verify/makeVerify')}" style="position: absolute;top:0;left: 135px" width="120px" id="verify">
+                                            </div>
+                                            <button class="btn btn-success btn-block" id="sub">Login</button>
+                                            <a href="forgot.html" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
+                                            <p class="text-center m-t-xs text-sm">Do not have an account?</p>
+                                            <a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a>
+                                        </form>
+                                        <p class="text-center m-t-xs text-sm">2016 &copy; lizards.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Row -->
+                </div><!-- Main Wrapper -->
+            </div><!-- Page Inner -->
+        </main><!-- Page Content -->
+	
 
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<![endif]-->
-<link href="__STATIC__/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="__STATIC__/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="__STATIC__/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="__STATIC__/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script><![endif]-->
-<title>后台登录 - H-ui.admin.page v3.0</title>
-<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
-</head>
-<body>
-<input type="hidden" id="TenantId" name="TenantId" value="" />
-<div class="header"></div>
-<div class="loginWraper">
-	<div id="loginform" class="loginBox">
-		<form class="form form-horizontal" action="index.html" method="post">
-			<div class="row cl">
-				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-				<div class="formControls col-xs-8">
-					<input id="" name="" type="text" placeholder="账户" class="input-text size-L">
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-				<div class="formControls col-xs-8">
-					<input id="" name="" type="password" placeholder="密码" class="input-text size-L">
-				</div>
-			</div>
-			<div class="row cl">
-				<div class="formControls col-xs-8 col-xs-offset-3">
-					<input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-					<img src="images/VerifyCode.aspx.png">
-					<a id="kanbuq" href="javascript:;">看不清，换一张</a>
-				</div>
-			</div>
-			<div class="row cl">
-				<div class="formControls col-xs-8 col-xs-offset-3">
-					<label for="online">
-						<input type="checkbox" name="online" id="online" value="">
-						使我保持登录状态</label>
-				</div>
-			</div>
-			<div class="row cl">
-				<div class="formControls col-xs-8 col-xs-offset-3">
-					<input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-					<input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-<div class="footer">Copyright 你的公司名称 by H-ui.admin.page.v3.0</div>
-
-<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="__STATIC__/h-ui/js/H-ui.js"></script>
-
-</body>
+        <!-- Javascripts -->
+        <script src="/static/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
+        <script src="/static/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="/static/assets/plugins/pace-master/pace.min.js"></script>
+        <script src="/static/assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+        <script src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="/static/assets/plugins/switchery/switchery.min.js"></script>
+        <script src="/static/assets/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+        <script src="/static/assets/plugins/offcanvasmenueffects/js/classie.js"></script>
+        <script src="/static/assets/plugins/waves/waves.min.js"></script>
+        <script src="/static/assets/js/layers.min.js"></script>
+        <script type="text/javascript">
+            $('#verify').click(function(){
+                var src = '{:url("index/Verify/makeVerify")}' + '?random=' + Math.random();
+                $(this).attr('src',src);
+            })
+            $('#sub').click(function(){
+                var url  = '{:url("index/User/checkLogin")}';
+                var data = $("form").serialize();
+                $.post(url,data,function(result){
+                    if(result.code){
+                        alert(result.msg);
+                        window.location.href = result.url;
+                    }else{
+                        alert(result.msg);
+                    }
+                },'JSON');
+                return false;
+            })
+        </script>
+    </body>
 </html>
