@@ -8,14 +8,18 @@ use think\Session;
 
 use app\index\model\User as UserModel;
 
-class User extends Base{
+class User extends Controller{
+
 
 	public function login(){
+		//检验用户是否已经登陆
+		$this->isReload();
 		return $this->view->fetch();
 	}
 
 	//验证用户登录
 	public function checkLogin(Request $request){
+		
 		//接收数据
 		$data = $request->param();
 		//校验数据
@@ -49,6 +53,22 @@ class User extends Base{
 		//验证成功,生成session
 		Session::set('user_id',$user['id']);
 		Session::set('user_name',$user['name']);
+		Session::set('user_info',$user);
 		return ['code' => 1 ,'msg' => '登录成功', 'url' => url('index/Index/index')];
+	}
+
+	//防止重复登陆
+	public function isReload(){
+		if(Session::has('user_id') && Session::has('user_name')){
+			$this->success('已经登陆,请勿重复登陆...',url('index/Index/index'));
+		}
+	}
+
+	//退出登陆(就是:清除session)
+	public function logout(){
+		Session::delete('user_id');
+		Session::delete('user_name');
+		Session::delete('user_info');
+		$this->success('退出成功...',url('index/User/login'));
 	}
 }

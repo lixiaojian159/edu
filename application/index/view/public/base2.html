@@ -1,0 +1,21 @@
+<!--_meta 作为公共模版分离出去-->
+{include file='public:meta' /}
+<!--/meta 作为公共模版分离出去-->
+
+
+<body>
+{block name="content"}
+主体内容
+{/block}
+
+<!--_footer 作为公共模版分离出去-->
+{include file="public:footer" /}
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+{block name="js"}
+js
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
