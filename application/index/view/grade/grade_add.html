@@ -3,29 +3,29 @@
 {block name="content"}
 <article class="cl pd-20">
 	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
-		<input type="hidden" name="id" value="{$grade.id}">
+
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{$grade.name}" id="name" name="name">
+				<input type="text" class="input-text" placeholder="请输入班级名称" id="name" name="name">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学制：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" autocomplete="off" value="{$grade.length}" id="length" name="length">
+				<input type="text" class="input-text" autocomplete="off" placeholder="请输入学制" id="length" name="length">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学费：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" autocomplete="off"  value="{$grade.price}" id="price" name="price">
+				<input type="text" class="input-text" autocomplete="off" placeholder="请输入学费" id="price" name="price">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>授课老师：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{$grade.teacher}" disabled="disabled">
+				<input type="text" class="input-text" placeholder="授课老师" disabled="disabled">
 			</div>
 		</div>
 
@@ -33,8 +33,8 @@
 			<label class="form-label col-xs-4 col-sm-3">状态：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 				<select class="select" size="1" name="status" id="status">
-					<option value="1" {eq name="$grade.status" value="1"}selected{/eq}>开启</option>
-					<option value="0" {eq name="$grade.status" value="0"}selected{/eq}>关闭</option>
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
 				</select>
 				</span> </div>
 		</div>
@@ -45,7 +45,6 @@
 		</div>
 	</form>
 </article>
-
 {/block}
 
 {block name="js"}
@@ -75,23 +74,24 @@ $(function(){
 			},
 			status:{
 				required:true,
-			},
+			}
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
 			$(form).ajaxSubmit(function(){
-				var url  ='{:url("index/Grade/gradeUpdateDo")}';
 				var data = $('form').serialize();
+				var url  = '{:url("index/Grade/gradeAddDo")}';
 				$.post(url,data,function(result){
 					if(result.code){
-						var index = parent.layer.getFrameIndex(window.name);
-						parent.$('.btn-refresh').click();
-						parent.layer.close(index);
+					    var index = parent.layer.getFrameIndex(window.name);
+			            parent.$('.btn-refresh').click();
+			            parent.layer.close(index);
+					}else{
+						layer.msg(result.msg,{icon:2,time:1000});
 					}
 				},'JSON');
-				return false; 
 			});
 		}
 	});
