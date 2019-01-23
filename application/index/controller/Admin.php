@@ -46,6 +46,8 @@ class Admin extends Base{
 		if($userDel['name'] == 'admin'){
 			return ['code'=>0,'msg'=>'admin超级管理员不能被删除'];
 		}
+		$userDel->is_delete = 1;
+		$userDel->save();
 		$res = User::destroy($id);
 		if($res){
 			return ['code'=>1];
@@ -72,5 +74,72 @@ class Admin extends Base{
 		if($res){
 			return ['code'=>1];
 		}
+	}
+
+	//添加
+	public function adminAdd(){
+		return $this->view->fetch();
+	}
+
+	//添加逻辑
+	public function addDo(Request $request){
+		//接收数据
+		$data = $request->post();
+		//检测数据
+		$rule = [
+			'name'  => 'require|max:10|min:4|unique:user',
+			'email' => 'require|unique:user',
+			'password' => 'require|max:20|min:5|confirm',
+			'status' => 'require',
+			'role' => 'require'
+		];
+		$resRule = $this->validate($data,$rule);
+		if($resRule !== true){
+			return ['code'=>0,'msg'=>$resRule];
+		}
+
+        unset($data['password_confirm']);
+        $data['password'] = md5($data['password']);
+		$res  = User::create($data);
+		if($res){
+			return ['code'=>1,'msg'=>'添加成功'];
+		}else{
+			return ['code'=>0,'msg'=>'添加失败'];
+		}
+	}
+
+	//检测用户名是否重复
+	public function checkName(Request $request){
+		$name = $request->post('name');
+		$res  = User::get(['name'=>$name]);
+		if($res){
+			return ['code'=>0,'msg'=>'用户名已存在'];
+		}else{
+			return ['code'=>1,'msg'=>'用户名可以使用'];
+		}
+	}
+
+	//检测用户邮箱是否重复
+	public function checkEmail(Request $request){
+		$email = $request->post('email');
+		$res   = User::get(['email'=>$email]);
+		if($res){
+			return ['code'=>0,'msg'=>'邮箱已存在'];
+		}else{
+			return ['code'=>1,'msg'=>'邮箱可以使用'];
+		}
+	}
+
+	//批量恢复
+	public function ReStart(){
+		$users = User::onlyTrashed()->select();
+		$data = [];
+		foreach($users as $key => $val){
+			$val->delete_time = null;
+			$val->is_delete   = 0;
+			$res = $val->save();
+			$data[$key] = $res;
+		}
+		dump($data);
 	}
 }

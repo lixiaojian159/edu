@@ -5,6 +5,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Request;
 use think\Session;
+use think\Db;
 
 use app\index\model\User as UserModel;
 
@@ -36,8 +37,9 @@ class User extends Controller{
 
 		//校验验证码
 		$verify = new Verify();
+
 		if(!$verify->check_verify($data['verify'])){
-			return ['code' => 0 , '验证码错误'];
+			return ['code' => 0 , 'msg'=>'验证码错误'];
 		}
 
 		//校验用户是否存在
@@ -50,6 +52,15 @@ class User extends Controller{
 			return ['code' => 0 , 'msg' => '用户名或者密码错误'];
 		}
 
+		if($user['status'] == 0){
+			return ['code' => 0 , 'msg' => '用户已停用（请联系超级管理员）'];
+		}
+
+		//修改登陆次数
+		Db::table('user')->where('id',$user['id'])->setInc('login_count');
+		//修改登录时间
+		$resT = UserModel::where('id',$user['id'])->update(['login_time'=>time()]);
+		//dump($resT);
 		//验证成功,生成session
 		Session::set('user_id',$user['id']);
 		Session::set('user_name',$user['name']);
