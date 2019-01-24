@@ -15,7 +15,8 @@ class Teacher extends Model{
 	protected $updateTime = 'update_time';
 	protected $dataFormal = 'Y/m/d';
 
+    //定义反向关联(教师管理的班级)
 	public function grade(){
-		return $this->hasOne('grade');
+		return $this->belongsTo('grade');
 	}
 }

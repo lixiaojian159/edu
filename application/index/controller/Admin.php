@@ -135,7 +135,7 @@ class Admin extends Base{
 		$users = User::onlyTrashed()->select();
 		$data = [];
 		foreach($users as $key => $val){
-			$val->delete_time = null;
+			$val->delete_time = NULL;
 			$val->is_delete   = 0;
 			$res = $val->save();
 			$data[$key] = $res;
